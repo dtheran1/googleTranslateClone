@@ -5,6 +5,7 @@ import { ArrowsIcon } from './components/Icons'
 import { LanguageSelector } from './components/LanguageSelector'
 import { AUTO_LANGUAGE } from './constants'
 import { useStore } from './hooks/useStore'
+import { SectionType } from './types.d'
 
 function App () {
   const { fromLanguage, toLanguage, interchangeLanguages, setFromLanguage, setToLanguage } = useStore()
@@ -16,7 +17,7 @@ function App () {
       <Row>
         <Col>
         <LanguageSelector
-          type='from'
+          type={SectionType.From}
           value={fromLanguage}
           onChange={setFromLanguage}
         />
@@ -31,7 +32,7 @@ function App () {
 
         <Col>
         <LanguageSelector
-          type='to'
+          type={SectionType.To}
           value={toLanguage}
           onChange={setToLanguage}
         />
