@@ -7,7 +7,7 @@ interface Props {
   onChange: (value: string) => void
   value: string
 }
-const commonStyles = { border: 0, height: '200px', backgroundColor: '#424242', resize: 'none' }
+const commonStyles = { border: 0, height: '200px', backgroundColor: '#424242', resize: 'none', color: '#f6dfa6' }
 
 const getPlaceHolder = ({ type, loading }: { type: SectionType, loading?: boolean }) => {
   if (type === SectionType.From) return 'Introducir texto'
@@ -27,7 +27,9 @@ export const TextArea = ({ type, loading, value, onChange }: Props) => {
       autoFocus={type === SectionType.From}
       as='textarea'
       placeholder={getPlaceHolder({ type, loading })}
+      disabled={type === SectionType.To}
       style={styles}
+      value={value}
       onChange={handleChange}
     />
   )

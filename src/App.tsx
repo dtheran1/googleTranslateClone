@@ -7,6 +7,8 @@ import { AUTO_LANGUAGE } from './constants'
 import { useStore } from './hooks/useStore'
 import { SectionType } from './types.d'
 import { TextArea } from './components/TextArea'
+import { useEffect } from 'react'
+import { translate } from './services/translate'
 
 function App () {
   const {
@@ -21,6 +23,19 @@ function App () {
     setResult,
     loading
   } = useStore()
+
+  useEffect(() => {
+    if (fromText === '') return
+
+    translate({ fromLanguage, text: fromText, toLanguage })
+      .then(result => {
+        if (result == null) return
+        setResult(result)
+      })
+      .catch(() => {
+        setResult('Error')
+      })
+  }, [fromText, fromLanguage, toLanguage])
   return (
     <Container fluid>
       <h2>Google Translate Clone </h2>
